@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        nav { margin-top: 20px; padding: 10px; background: #f4f4f4; }
+        a { margin-right: 15px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+
+    <nav>
+        {% if page_type == 'home' %}
+            <h3>Наші локації:</h3>
+            <a href="{% url 'somerset' %}">Готель Somerset</a>
+            <a href="{% url 'dcip' %}">Піцерія DCIP</a>
+            <a href="{% url 'bean_water' %}">Кав’ярня Bean & Water</a>
+        {% else %}
+            <a href="{% url 'home' %}">← Назад на головну</a>
+        {% endif %}
+    </nav>
+</body>
+</html>

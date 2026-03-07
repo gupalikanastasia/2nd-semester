@@ -16,9 +16,9 @@
     <nav>
         {% if page_type == 'home' %}
             <h3>Наші локації:</h3>
-            <a href="{% url 'somerset' %}">Готель Somerset</a>
-            <a href="{% url 'dcip' %}">Піцерія DCIP</a>
-            <a href="{% url 'bean_water' %}">Кав’ярня Bean & Water</a>
+            <a href="{% url 'coffee' %}">Кава</a>
+            <a href="{% url 'cakes' %}">Авторська випічка</a>
+            <a href="{% url 'desserts' %}">Десерти</a>
         {% else %}
             <a href="{% url 'home' %}">← Назад на головну</a>
         {% endif %}

@@ -1,6 +1,147 @@
-body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-header { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-nav { margin-top: 20px; padding: 10px; background: #f4f4f4; }
-a { margin-right: 15px; text-decoration: none; color: #007bff; }
-footer { margin-top: 50px; border-top: 1px solid #ccc; padding: 20px; text-align: center; }
-.item-card { border: 1px solid #eee; padding: 10px; margin-top: 10px; border-radius: 5px; }
+/* Загальні налаштування */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Центруємо Хедер */
+header {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+header h1 {
+    font-size: 48px; /* Робимо назву великою */
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 28px;
+}
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Центруємо всю сітку */
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Центруємо контейнер */
+}
+
+/* Меню категорій у вигляді кнопок */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f39c12;
+    padding: 10px 25px;
+    border: 2px solid #f39c12;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #f39c12;
+    color: #white;
+}
+
+/* Футер по центру */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+    line-height: 1.8;
+}
+
+.footer-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #f8f9fa; /* Світло-сірий фон */
+    color: #95a5a6; /* Спокійний колір тексту */
+    text-decoration: none;
+    border: 1px solid #dcdde1;
+    border-radius: 15px;
+    font-size: 13px;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.footer-btn:hover {
+    background-color: #dcdde1;
+    color: #2c3e50;
+}
+
+/* Кнопки замовлення та кошика */
+.btn-main {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #f39c12;
+    color: white !important;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(243, 156, 18, 0.2);
+}
+
+.btn-main:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+}
+
+/* Окремо для кнопки "Назад" (додамо відступ) */
+.btn-back {
+    margin-top: 25px; /* Трішки нижче */
+    background-color: #95a5a6; /* Робимо її іншого кольору, або лишаємо таку ж */
+}
+
+/* Картка товару на головній */
+.item-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    margin: 20px;
+}
+
+.item-card img {
+    border-radius: 15px;
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Детальна сторінка товару */
+.detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.detail-info {
+    text-align: center; /* Центруємо текст і на сторінці товару теж */
+}

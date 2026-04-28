@@ -26,8 +26,9 @@
     <footer>
         <p>Sleepy Pandy Cafe © 2026. Завжди раді вам!</p>
         <p>Локація: вул. Лесі Українки 2</p>
-        {% if page_type != 'home' %}
-            <a href="{% url 'home' %}">← Назад на головну</a>
+
+        {% if page_type == 'category' %}
+            <a href="{% url 'home' %}" class="footer-btn">← Назад на головну</a>
         {% endif %}
     </footer>
 

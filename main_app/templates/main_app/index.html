@@ -1,15 +1,20 @@
 {% extends 'main_app/base.html' %}
 
 {% block content %}
-    <h2>{{ title }}</h2>
-    <p>{{ content }}</p>
+    <h2 class="page-title">{{ title }}</h2>
 
-    {% for item in items %}
-        <div class="item-card">
-            <h3>{{ item.name }} — {{ item.price }} грн</h3>
-            <p>{{ item.description }}</p>
-        </div>
-    {% empty %}
-        <p>Тут поки порожньо.</p>
-    {% endfor %}
+    <div class="menu-grid">
+        {% for item in items %}
+            <div class="item-card">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                {% endif %}
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.price }} грн</p>
+                <a href="{% url 'item_detail' item.id %}" class="btn-main">Замовити</a>
+            </div>
+        {% empty %}
+            <p>Тут поки порожньо.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

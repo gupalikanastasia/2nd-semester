@@ -9,6 +9,7 @@ class Category(models.Model):
         return self.name
 
 class MenuItem(models.Model):
+    image = models.ImageField(upload_to='items/', blank=True, null=True, verbose_name="Фото страви")
     name = models.CharField(max_length=100, verbose_name="Назва страви")
     description = models.TextField(verbose_name="Опис")
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Ціна")

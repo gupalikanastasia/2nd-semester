@@ -1,0 +1,23 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class="detail-container">
+    <div class="detail-image">
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 400px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        {% endif %}
+    </div>
+
+    <div class="detail-info">
+        <h1>{{ item.name }}</h1>
+        <p style="font-size: 24px; color: #e67e22; font-weight: bold;">{{ item.price }} грн</p>
+        <p style="color: #7f8c8d; margin-bottom: 30px;">{{ item.description }}</p>
+
+        <button class="btn-main">Додати в кошик</button>
+
+        <br>
+
+        <a href="{% url 'home' %}" class="btn-main btn-back">← Назад до меню</a>
+    </div>
+</div>
+{% endblock %}

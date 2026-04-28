@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>Sleepy Pandy Cafe</h1>
+        <nav>
+            <a href="{% url 'home' %}"><b>Головна</b></a>
+            {% for cat in categories %}
+                <a href="{% url 'category_page' cat.id %}">{{ cat.name }}</a>
+            {% endfor %}
+        </nav>
+    </header>
+
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Sleepy Pandy Cafe © 2026. Завжди раді вам!</p>
+        <p>Локація: вул. Лесі Українки 2</p>
+        {% if page_type != 'home' %}
+            <a href="{% url 'home' %}">← Назад на головну</a>
+        {% endif %}
+    </footer>
+
+</body>
+</html>

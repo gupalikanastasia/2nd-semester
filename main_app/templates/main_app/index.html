@@ -1,43 +1,15 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        nav { margin-top: 20px; padding: 10px; background: #f4f4f4; }
-        a { margin-right: 15px; text-decoration: none; color: #007bff; }
-        footer { margin-top: 50px; border-top: 1px solid #ccc; padding: 20px; text-align: center; }
-        .item-card { border: 1px solid #eee; padding: 10px; margin-top: 10px; border-radius: 5px; }
-    </style>
-</head>
-<body>
-    <h1>{{ title }}</h1>
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
     <p>{{ content }}</p>
-    <nav>
-        <a href="{% url 'home' %}"><b>Головна</b></a>
-        {% for cat in categories %}
-            <a href="{% url 'category_page' cat.id %}">{{ cat.name }}</a>
-        {% endfor %}
-    </nav>
-    <div class="content">
-        {% for item in items %}
-            <div class="item-card">
-                <h3>{{ item.name }} — {{ item.price }} грн</h3>
-                <p>{{ item.description }}</p>
-            </div>
-        {% empty %}
-            <p>Тут поки порожньо.</p>
-        {% endfor %}
-    </div>
 
-    <footer>
-        <p>Sleepy Pandy Cafe © 2026. Завжди раді вам!</p>
-        <p>Локація: вул. Лесі Українки 2</p>
-        {% if page_type != 'home' %}
-            <a href="{% url 'home' %}">← Назад на головну</a>
-        {% endif %}
-    </footer>
-
-</body>
-</html>
+    {% for item in items %}
+        <div class="item-card">
+            <h3>{{ item.name }} — {{ item.price }} грн</h3>
+            <p>{{ item.description }}</p>
+        </div>
+    {% empty %}
+        <p>Тут поки порожньо.</p>
+    {% endfor %}
+{% endblock %}

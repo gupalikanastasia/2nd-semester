@@ -1,0 +1,6 @@
+body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+header { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+nav { margin-top: 20px; padding: 10px; background: #f4f4f4; }
+a { margin-right: 15px; text-decoration: none; color: #007bff; }
+footer { margin-top: 50px; border-top: 1px solid #ccc; padding: 20px; text-align: center; }
+.item-card { border: 1px solid #eee; padding: 10px; margin-top: 10px; border-radius: 5px; }

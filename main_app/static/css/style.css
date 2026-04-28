@@ -353,3 +353,42 @@ footer {
     text-align: center;
     padding: 100px 20px;
 }
+/* Базовий стиль для всіх посилань у меню, щоб ми точно знали параметри */
+nav a, .btn-logout-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px; /* Однаковий відступ для всіх */
+    border: 2px solid #fca311; /* Товщина рамки як у сусідів */
+    border-radius: 50px; /* Робимо ідеальну "пігулку" */
+    color: #fca311;
+    text-decoration: none;
+    font-weight: 700; /* Жирність тексту */
+    font-size: 16px;
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: inherit;
+    box-sizing: border-box; /* Важливо для однакового розміру */
+    height: 45px; /* Фіксована висота, щоб кнопка не "стрибала" */
+}
+
+/* Прибираємо специфічні властивості кнопки */
+.btn-logout-link {
+    outline: none;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Ховер ефект для всіх однаковий */
+nav a:hover, .btn-logout-link:hover {
+    background-color: #fca311;
+    color: white;
+}
+
+/* Вирівнюємо форму в ряд */
+nav form {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px; /* Невеликий відступ між кнопками */
+}

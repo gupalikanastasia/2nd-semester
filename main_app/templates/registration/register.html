@@ -1,0 +1,14 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class="forms-container">
+    <div class="newsletter-section">
+        <h2 class="cart-title">✨ Реєстрація</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-main">Створити акаунт</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

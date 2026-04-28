@@ -1,0 +1,36 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class="cart-container-main">
+    <h2 class="cart-title">👤 Особистий кабінет: {{ user.username }}</h2>
+    
+    <div class="cart-card">
+        <h3>{% if user.is_staff %}📋 Всі замовлення (Адмін-панель){% else %}📦 Мої замовлення{% endif %}</h3>
+        
+        {% if orders %}
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        {% if user.is_staff %}<th>Клієнт</th>{% endif %}
+                        <th>Дата</th>
+                        <th>Сума</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        {% if user.is_staff %}<td>{{ order.user.username }}</td>{% endif %}
+                        <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+                        <td class="text-bold">{{ order.total_price }} грн</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Замовлень ще не було. Може, замовимо круасан? 🥐</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

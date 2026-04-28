@@ -40,10 +40,13 @@
                     <span class="total-label">Разом до сплати:</span>
                     <span class="total-amount">{{ total_price }} грн</span>
                 </div>
+
                 <div class="cart-actions">
                     <a href="{% url 'home' %}" class="btn-secondary">🔙 До меню</a>
-                    <button class="btn-main checkout-btn">Оформити замовлення ✨</button>
+                    <a href="{% url 'checkout' %}" class="btn-main checkout-btn" style="text-decoration: none; display: inline-block; text-align: center;"> Оформити замовлення ✨
+                    </a>
                 </div>
+
             </div>
         </div>
     {% else %}

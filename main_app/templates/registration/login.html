@@ -1,0 +1,17 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<div class="forms-container">
+    <div class="newsletter-section">
+        <h2 class="cart-title">🥐 Вхід у Sleepy Pandy</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-main">Увійти</button>
+        </form>
+        <p style="margin-top: 15px;">
+            <a href="{% url 'password_reset' %}" style="color: #888;">Забули пароль?</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

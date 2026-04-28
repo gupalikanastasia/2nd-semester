@@ -1,3 +1,6 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import SubscriptionForm, RatingForm
+from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from .models import Category, MenuItem
 
@@ -28,3 +31,70 @@ def item_detail(request, item_id):
         'categories': categories,
         'title': item.name
     })
+
+def item_detail(request, item_id):
+    item = get_object_or_404(MenuItem, id=item_id)
+    categories = Category.objects.all()
+
+    if request.method == 'POST':
+        rating_form = RatingForm(request.POST)
+        if rating_form.is_valid():
+            new_rating = rating_form.save(commit=False)
+            new_rating.item = item
+            new_rating.save()
+            return redirect('item_detail', item_id=item.id)
+    else:
+        rating_form = RatingForm()
+
+    return render(request, 'main_app/item_detail.html', {
+        'item': item,
+        'categories': categories,
+        'title': item.name,
+        'rating_form': rating_form,
+        'subscription_form': SubscriptionForm()  # Передаємо форму розсилки
+    })
+
+def cart_add(request, item_id):
+    cart = request.session.get('cart', {})
+    item_id_str = str(item_id)
+
+    if item_id_str in cart:
+        cart[item_id_str] += 1
+    else:
+        cart[item_id_str] = 1
+
+    request.session['cart'] = cart
+    return redirect('cart_detail')
+
+
+def cart_detail(request):
+    cart = request.session.get('cart', {})
+    items_in_cart = []
+    total_price = 0
+
+    for item_id, quantity in cart.items():
+        item = get_object_or_404(MenuItem, id=item_id)
+        subtotal = item.price * quantity
+        total_price += subtotal
+        items_in_cart.append({
+            'item': item,
+            'quantity': quantity,
+            'subtotal': subtotal
+        })
+
+    categories = Category.objects.all()
+    return render(request, 'main_app/cart.html', {
+        'items': items_in_cart,
+        'total_price': total_price,
+        'categories': categories,
+        'title': 'Ваш кошик'
+    })
+
+
+def cart_remove(request, item_id):
+    cart = request.session.get('cart', {})
+    item_id_str = str(item_id)
+    if item_id_str in cart:
+        del cart[item_id_str]
+        request.session['cart'] = cart
+    return redirect('cart_detail')

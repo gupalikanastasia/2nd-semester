@@ -13,11 +13,35 @@
         <p style="font-size: 24px; color: #e67e22; font-weight: bold;">{{ item.price }} грн</p>
         <p style="color: #7f8c8d; margin-bottom: 30px;">{{ item.description }}</p>
 
-        <button class="btn-main">Додати в кошик</button>
+        <a href="{% url 'cart_add' item.id %}" class="btn-main" style="display: inline-block; text-align: center;">
+            🛒 Додати в кошик
+        </a>
 
         <br>
 
         <a href="{% url 'home' %}" class="btn-main btn-back">← Назад до меню</a>
     </div>
 </div>
+
+<div class="rating-section">
+    <h4>Середній бал: {{ item.get_average_rating }}</h4>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Оцініть цей товар:</p>
+        {{ rating_form.score }}
+        <button type="submit" class="btn-main">Поставити оцінку</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="newsletter-section">
+    <h4>Підпишіться на наші новини</h4>
+    <form action="#" method="post"> {% csrf_token %}
+        {{ subscription_form.as_p }}
+        <button type="submit" class="btn-main">Підписатися</button>
+    </form>
+</div>
+
 {% endblock %}

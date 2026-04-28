@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.db import models
 
 class Category(models.Model):
@@ -18,6 +19,10 @@ class MenuItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def get_average_rating(self):
+        avg = self.ratings.aggregate(Avg('score'))['score__avg']
+        return round(avg, 1) if avg else "Немає оцінок"
+
     def __str__(self):
         return self.name
 
@@ -29,3 +34,16 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+
+class Subscription(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Ім'я")
+    email = models.EmailField(unique=True, verbose_name="Email")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+
+class Rating(models.Model):
+    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name='ratings')
+    score = models.IntegerField(choices=[(i, i) for i in range(1, 6)], verbose_name="Оцінка")
+    created_at = models.DateTimeField(auto_now_add=True)

@@ -33,4 +33,4 @@ class OrderItemInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'total_price', 'created_at')
     list_filter = ('created_at', 'user')
-    inlines = [OrderItemInline] # Показує товари прямо всередині замовлення
+    inlines = [OrderItemInline]

@@ -26,35 +26,36 @@ def category_items(request, cat_id):
     }
     return render(request, 'main_app/index.html', context)
 
-def item_detail(request, item_id):
-    item = get_object_or_404(MenuItem, id=item_id)
-    categories = Category.objects.all() # для меню
-    return render(request, 'main_app/item_detail.html', {
-        'item': item,
-        'categories': categories,
-        'title': item.name
-    })
 
 def item_detail(request, item_id):
     item = get_object_or_404(MenuItem, id=item_id)
     categories = Category.objects.all()
 
+    rating_form = RatingForm()
+    subscription_form = SubscriptionForm()
+
     if request.method == 'POST':
-        rating_form = RatingForm(request.POST)
-        if rating_form.is_valid():
-            new_rating = rating_form.save(commit=False)
-            new_rating.item = item
-            new_rating.save()
-            return redirect('item_detail', item_id=item.id)
-    else:
-        rating_form = RatingForm()
+        if 'score' in request.POST:
+            rating_form = RatingForm(request.POST)
+            if rating_form.is_valid():
+                new_rating = rating_form.save(commit=False)
+                new_rating.item = item
+                new_rating.save()
+                return redirect('item_detail', item_id=item.id)
+
+        elif 'email' in request.POST:  # Якщо в запиті є імейл, значить це підписка
+            subscription_form = SubscriptionForm(request.POST)
+            if subscription_form.is_valid():
+                subscription_form.save()
+                # Можна додати якесь повідомлення, але поки просто редірект
+                return redirect('item_detail', item_id=item.id)
 
     return render(request, 'main_app/item_detail.html', {
         'item': item,
         'categories': categories,
         'title': item.name,
         'rating_form': rating_form,
-        'subscription_form': SubscriptionForm()  # Передаємо форму розсилки
+        'subscription_form': subscription_form,
     })
 
 def cart_add(request, item_id):

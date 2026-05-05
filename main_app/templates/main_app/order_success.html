@@ -1,0 +1,9 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+<div class="pandy-status-page">
+    <h1 class="pandy-status-page__title">Дякуємо за замовлення! 🐼🥨</h1>
+    <p class="pandy-status-page__id">Номер вашого замовлення: <strong>#{{ order.id }}</strong></p>
+    <p class="pandy-status-page__text">Ми зв'яжемося з вами найближчим часом для підтвердження деталей.</p>
+    <a href="{% url 'home' %}" class="pandy-btn pandy-btn--secondary">Повернутися на головну</a>
+</div>
+{% endblock %}

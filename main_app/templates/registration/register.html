@@ -1,13 +1,12 @@
 {% extends 'main_app/base.html' %}
-
 {% block content %}
-<div class="forms-container">
-    <div class="newsletter-section">
-        <h2 class="cart-title">✨ Реєстрація</h2>
-        <form method="post">
+<div class="pandy-container--small">
+    <div class="pandy-card">
+        <h2 class="pandy-card__title">Реєстрація</h2>
+        <form method="post" class="pandy-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn-main">Створити акаунт</button>
+            <button type="submit" class="pandy-btn pandy-btn--main">Продовжити</button>
         </form>
     </div>
 </div>

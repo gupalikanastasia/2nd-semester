@@ -14,4 +14,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('order-success/<int:order_id>/', views.order_success, name='order_success'),
 ]

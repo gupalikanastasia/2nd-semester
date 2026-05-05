@@ -1,394 +1,429 @@
-/* Загальні налаштування */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fafafa;
-    color: #333;
+
+* { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #fafafa;
+    color: #2c3e50;
 }
 
-/* Центруємо Хедер */
-header {
-    background-color: #fff;
+/* 2. Обмежуємо картинки, щоб не було "катастрофи" */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 3. Хедер та Навігація */
+header, .pandy-header {
+    background: #fff;
     padding: 40px 20px;
     text-align: center;
     border-bottom: 1px solid #eee;
 }
 
-header h1 {
-    font-size: 48px; /* Робимо назву великою */
+h1, .pandy-logo {
+    font-size: 42px;
     color: #2c3e50;
     margin-bottom: 25px;
 }
 
-.page-title {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 28px;
-}
-
-.menu-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Центруємо всю сітку */
-    gap: 25px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto; /* Центруємо контейнер */
-}
-
-/* Меню категорій у вигляді кнопок */
-nav {
+nav, .pandy-nav {
     display: flex;
     justify-content: center;
+    gap: 10px;
     flex-wrap: wrap;
-    gap: 15px;
 }
 
-nav a {
+nav a, .pandy-nav__link {
     text-decoration: none;
-    color: #f39c12;
-    padding: 10px 25px;
-    border: 2px solid #f39c12;
-    border-radius: 30px;
-    font-weight: bold;
+    color: #fca311;
+    padding: 10px 22px;
+    border: 2px solid #fca311;
+    border-radius: 50px;
+    font-weight: 700;
     transition: 0.3s;
 }
 
-nav a:hover {
-    background-color: #f39c12;
-    color: #white;
+nav a:hover, .pandy-nav__link:hover {
+    background: #fca311;
+    color: #fff;
+}
+/* ══════════════════════════════════════════
+   ФІНАЛЬНЕ ЦЕНТРУВАННЯ ЗАГОЛОВКІВ
+   ══════════════════════════════════════════ */
+
+/* Центруємо "Наше Меню" на головній */
+.menu-title,
+.pandy-section-title {
+    text-align: center !important;
+    width: 100%;
+    display: block;
+    margin: 40px auto !important;
 }
 
-/* Футер по центру */
-footer {
+/* Центруємо "Ваше замовлення" у кошику */
+.cart-title,
+.pandy-page-title {
+    text-align: center !important;
+    width: 100%;
+    display: block;
+    margin: 40px auto !important;
+}
+
+/* Додатковий фікс для вирівнювання іконок у заголовках */
+h2.menu-title,
+h2.cart-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ══════════════════════════════════════════
+   ГОЛОВНА СТОРІНКА: ПОВЕРТАЄМО ГАРНУ СІТКУ
+   ══════════════════════════════════════════ */
+
+.pandy-hero {
+    max-width: 800px;
+    margin: 60px auto !important;
     text-align: center;
+    padding: 0 20px;
+}
+
+.pandy-grid, .menu-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pandy-card, .item-card {
+    background: #fff;
+    width: 300px !important; /* Ось тут ми лікуємо ширину! */
+    padding: 25px;
+    border-radius: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.pandy-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(252, 163, 17, 0.15);
+}
+
+.pandy-card__img, .item-card img {
+    width: 100% !important;
+    height: 220px !important; /* Повертаємо висоту фото */
+    object-fit: cover !important;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.pandy-card__title, .item-name {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+/* 6. Кнопки */
+.pandy-btn, .btn-pandy-main {
+    display: inline-block;
+    background: #fca311;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}
+
+/* 7. Футер */
+footer, .pandy-footer {
+    background: #fff;
     padding: 40px 20px;
-    background-color: #fff;
+    text-align: center;
     border-top: 1px solid #eee;
     margin-top: 50px;
-    line-height: 1.8;
 }
 
-.footer-btn {
-    display: inline-block;
-    padding: 8px 20px;
-    background-color: #f8f9fa; /* Світло-сірий фон */
-    color: #95a5a6; /* Спокійний колір тексту */
-    text-decoration: none;
-    border: 1px solid #dcdde1;
-    border-radius: 15px;
-    font-size: 13px;
-    transition: 0.3s;
-    margin-top: 15px;
+
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
-.footer-btn:hover {
-    background-color: #dcdde1;
-    color: #2c3e50;
-}
-
-/* Кнопки замовлення та кошика */
-.btn-main {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #f39c12;
-    color: white !important;
-    text-decoration: none;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(243, 156, 18, 0.2);
-}
-
-.btn-main:hover {
-    background-color: #e67e22;
-    transform: translateY(-2px);
-}
-
-/* Окремо для кнопки "Назад" (додамо відступ) */
-.btn-back {
-    margin-top: 25px; /* Трішки нижче */
-    background-color: #95a5a6; /* Робимо її іншого кольору, або лишаємо таку ж */
-}
-
-/* Картка товару на головній */
-.item-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    margin: 20px;
-}
-
-.item-card img {
-    border-radius: 15px;
-    width: 100%;
-    max-width: 250px;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Детальна сторінка товару */
-.detail-container {
-    max-width: 900px;
-    margin: 40px auto;
+body {
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Магія для закріплення футера */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa;
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+/* Контент розтягується і штовхає футер донизу */
+main.pandy-main-content {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+/* ══════════════════════════════════════════
+   2. ХЕДЕР ТА НАВІГАЦІЯ (УНІФІКАЦІЯ КНОПОК)
+   ══════════════════════════════════════════ */
+header.pandy-header {
+    background: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.pandy-logo { font-size: 38px; margin-bottom: 25px; }
+
+nav.pandy-nav {
+    display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.detail-info {
-    text-align: center; /* Центруємо текст і на сторінці товару теж */
-}
-
-.forms-container {
-    max-width: 600px; /* Обмежуємо ширину, щоб вони не розповзалися */
-    margin: 50px auto; /* Центруємо по горизонталі */
-    padding: 0 20px; /* Додаємо відступи з боків */
-    text-align: center; /* Центруємо текст всередині */
-}
-
-.rating-section,
-.newsletter-section {
-    background-color: #fff; /* Білий фон для контрасту */
-    padding: 25px;
-    border-radius: 20px; /* Закруглені кути */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Легка тінь */
-    margin-bottom: 25px; /* Відступ між секціями */
-    border: 1px solid #f0e4d7; /* Тонка кремова межа */
-}
-
-/* Заголовки у секціях */
-.rating-section h4,
-.newsletter-section h4 {
-    margin-top: 0;
-    color: #333;
-    font-size: 1.3rem;
-}
-
-.form-control,
-.form-select {
-    width: 100%; /* На всю ширину контейнера */
-    padding: 12px 15px; /* Відступи всередині поля */
-    margin-bottom: 15px; /* Відступ під полем */
-    border: 1px solid #ddd; /* Межа */
-    border-radius: 25px; /* Закруглені кути (як у кнопок) */
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s; /* Плавна анімація */
-    box-sizing: border-box; /* Щоб padding не збільшував ширину */
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: #fca311;
-    box-shadow: 0 0 8px rgba(252, 163, 17, 0.3);
-    outline: none;
-}
-
-.form-select {
-    appearance: none;
-    background-color: white;
-    cursor: pointer;
-}
-
-.newsletter-section p {
-    margin: 0 0 10px 0;
-    text-align: left;
-}
-
-.newsletter-section p label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
+/* Уніфікований стиль для всіх кнопок у меню, включаючи "Вийти" */
+.pandy-nav__link,
+.btn-logout-link,
+.pandy-nav__form button {
+    text-decoration: none;
+    color: #fca311;
+    padding: 10px 22px;
+    border: 2px solid #fca311;
+    border-radius: 50px;
+    font-weight: 700;
     font-size: 14px;
+    background: transparent;
+    transition: 0.3s;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-.forms-container .btn-main {
-    margin-top: 10px;
-    width: auto; /* Не на всю ширину */
-    padding: 12px 30px;
+.pandy-nav__link:hover,
+.btn-logout-link:hover,
+.pandy-nav__link--cart,
+.pandy-btn--logout:hover {
+    background: #fca311;
+    color: #fff;
 }
 
-
-.cart-container-main {
-    max-width: 900px;
+/* ══════════════════════════════════════════
+   3. КАРТКИ ТА КОНТЕЙНЕРИ (ЦЕНТРУВАННЯ ТА ШИРИНА)
+   ══════════════════════════════════════════ */
+.pandy-container,
+.pandy-container--narrow,
+.pandy-container--small {
+    width: 100%;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-.cart-title {
-    text-align: left;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
+.pandy-container--narrow { max-width: 900px; } /* Для кошика та кабінету */
+.pandy-container--small { max-width: 600px; }  /* Для входу та реєстрації */
 
-/* Картка, в якій лежить таблиця */
-.cart-card {
+.pandy-card {
     background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    padding: 30px;
-    border: 1px solid #f0e4d7;
-}
-
-.cart-table {
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
 }
 
-.cart-table th {
-    padding: 15px;
-    border-bottom: 2px solid #f8f1ea;
-    color: #888;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 1px;
+.pandy-card--full { max-width: 1000px; margin: 40px auto; }
+
+/* ══════════════════════════════════════════
+   4. ТОВАР (ДЕТАЛІ ТА РЕЙТИНГ)
+   ══════════════════════════════════════════ */
+.pandy-detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    margin: 60px auto;
+    max-width: 1100px;
 }
 
-.cart-table td {
-    padding: 20px 15px;
-    border-bottom: 1px solid #f8f1ea;
-    vertical-align: middle;
+.pandy-detail__image-box { flex: 0 1 450px; }
+.pandy-detail__img { width: 100%; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.pandy-detail__info { flex: 1 1 400px; text-align: left; }
+
+.pandy-detail__price { font-size: 28px; font-weight: 800; color: #fca311; margin: 15px 0; }
+
+/* Блок рейтингу під фото */
+.pandy-rating-box, .rating-section {
+    max-width: 450px;
+    margin: 40px auto;
     text-align: center;
 }
 
-/* Вирівнювання першої колонки (назва товару) */
-.text-left { text-align: left !important; }
-.text-bold { font-weight: bold; color: #333; }
-
-.item-name {
-    font-weight: 600;
-    color: #444;
-    font-size: 16px;
+/* ══════════════════════════════════════════
+   5. ТАБЛИЦІ (КОШИК ТА КАБІНЕТ)
+   ══════════════════════════════════════════ */
+.pandy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
 }
 
-/* Маленька плашка для кількості */
-.badge {
-    background: #fdf2e9;
-    color: #e67e22;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 14px;
-    font-weight: 600;
+.pandy-table th {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 15px;
+    border-bottom: 2px solid #eee;
 }
 
-/* Кнопка видалення */
-.btn-remove {
-    color: #e74c3c;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
+.pandy-table td { padding: 20px 15px; text-align: center; border-bottom: 1px solid #f9f9f9; }
+.pandy-table__td--bold { font-weight: 800; color: #fca311; }
 
-.btn-remove:hover {
-    color: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Футер кошика з підсумком */
-.cart-footer {
+.pandy-cart-footer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 20px;
+    margin-top: 30px;
 }
 
-.total-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* ══════════════════════════════════════════
+   6. ФОРМИ ТА ФУТЕР (ФОРМА ПІДПИСКИ)
+   ══════════════════════════════════════════ */
+.pandy-form p { text-align: left; margin-bottom: 20px; }
+.pandy-form input, .pandy-form select {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
 }
 
-.total-label {
-    font-size: 18px;
-    color: #777;
-}
-
-.total-amount {
-    font-size: 28px;
-    font-weight: 800;
-    color: #fca311; /* Твій акцентний колір */
-}
-
-.cart-actions {
-    display: flex;
-    gap: 15px;
-}
-
-/* Кнопка "Назад" */
-.btn-secondary {
-    background: #eee;
-    color: #555;
+/* Стиль поля імейлу у футері */
+.footer-input {
     padding: 12px 25px;
-    border-radius: 25px;
+    border-radius: 50px;
+    border: 2px solid #eee;
+    outline: none;
+    width: 280px;
+    transition: 0.3s;
+}
+.footer-input:focus { border-color: #fca311; background: #fff; }
+
+.pandy-footer {
+    flex-shrink: 0;
+    background: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+/* ══════════════════════════════════════════
+   7. КНОПКИ ТА СТАТУСИ
+   ══════════════════════════════════════════ */
+.pandy-btn, .btn-pandy-main {
+    background: #fca311;
+    color: #fff;
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.pandy-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(252,163,17,0.3); }
+
+.pandy-text--center, .pandy-status-page { text-align: center; }
+
+/* Це врятує твій вхід та реєстрацію від звуження до 300px */
+.pandy-container--small .pandy-card,
+.pandy-container--narrow .pandy-card,
+.pandy-card--full {
+    width: 100% !important;
+    max-width: none;
+}
+
+.pandy-card__title,
+.pandy-detail__title,
+.pandy-detail__desc,
+.pandy-hero__text,
+.item-name {
+    overflow-wrap: break-word; /* Сучасний стандарт перенесення */
+    word-wrap: break-word;     /* Для підтримки старих браузерів */
+    word-break: break-word;    /* Змушує довгі набори букв розриватися */
+    hyphens: auto;             /* Додає дефіси, де це можливо */
+    max-width: 100%;           /* Не дає виходити за межі батьківського блоку */
+}
+
+.pandy-card__link,
+.pandy-card__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pandy-form p.pandy-text--center {
+    text-align: center !important;
+}
+
+/* ══════════════════════════════════════════
+   ЦЕНТРУВАННЯ ВМІСТУ КОШИКА (ФІКС)
+   ══════════════════════════════════════════ */
+
+/* Центруємо текст і посилання всередині контейнерів кошика/входу */
+.pandy-container--narrow,
+.pandy-container--small {
+    text-align: center !important;
+}
+
+/* Робимо кнопку в кошику блочною, щоб спрацювали автоматичні відступи */
+.pandy-container--narrow .pandy-btn,
+.pandy-container--small .pandy-btn {
+    display: inline-block !important; /* Щоб не була на весь екран */
+    margin: 25px auto !important;     /* Центрування + відступ зверху */
+    float: none !important;           /* Прибираємо можливе обтікання */
+}
+
+/* Якщо там є просто параграфи з текстом (як про порожній кошик) */
+.pandy-container--narrow p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+/* ══════════════════════════════════════════
+   СТИЛЬ ДЛЯ ЗАБУТЬКУВАТИХ ПАНД
+   ══════════════════════════════════════════ */
+
+.pandy-form__extra {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pandy-link--subtle {
+    font-size: 14px;
+    color: #95a5a6; /* М'який сірий колір */
     text-decoration: none;
     transition: 0.3s;
 }
 
-.btn-secondary:hover {
-    background: #ddd;
-}
-
-/* Кнопка оформлення */
-.checkout-btn {
-    min-width: 250px;
-    box-shadow: 0 4px 15px rgba(252, 163, 17, 0.3);
-}
-
-/* Стиль для порожнього кошика */
-.empty-cart {
-    text-align: center;
-    padding: 100px 20px;
-}
-/* Базовий стиль для всіх посилань у меню, щоб ми точно знали параметри */
-nav a, .btn-logout-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px; /* Однаковий відступ для всіх */
-    border: 2px solid #fca311; /* Товщина рамки як у сусідів */
-    border-radius: 50px; /* Робимо ідеальну "пігулку" */
-    color: #fca311;
-    text-decoration: none;
-    font-weight: 700; /* Жирність тексту */
-    font-size: 16px;
-    background: transparent;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-family: inherit;
-    box-sizing: border-box; /* Важливо для однакового розміру */
-    height: 45px; /* Фіксована висота, щоб кнопка не "стрибала" */
-}
-
-/* Прибираємо специфічні властивості кнопки */
-.btn-logout-link {
-    outline: none;
-    line-height: 1;
-    margin: 0;
-}
-
-/* Ховер ефект для всіх однаковий */
-nav a:hover, .btn-logout-link:hover {
-    background-color: #fca311;
-    color: white;
-}
-
-/* Вирівнюємо форму в ряд */
-nav form {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 5px; /* Невеликий відступ між кнопками */
+.pandy-link--subtle:hover {
+    color: #fca311; /* Стає помаранчевим при наведенні */
+    text-decoration: underline;
 }

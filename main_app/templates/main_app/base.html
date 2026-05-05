@@ -3,50 +3,66 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body class="pandy-body">
 
-    <header>
-        <h1>Sleepy Pandy Cafe</h1>
+    <header class="pandy-header">
+        <h1 class="pandy-logo">Sleepy Pandy Cafe</h1>
+        <nav class="pandy-nav">
+            <a href="{% url 'home' %}" class="pandy-nav__link">Головна</a>
+            {% for cat in categories %}
+                <a href="{% url 'category_page' cat.id %}" class="pandy-nav__link">{{ cat.name }}</a>
+            {% endfor %}
 
-            <nav>
-                <a href="{% url 'home' %}"><b>Головна</b></a>
-                {% for cat in categories %}
-                    <a href="{% url 'category_page' cat.id %}">{{ cat.name }}</a>
-                {% endfor %}
-
-                {% if user.is_authenticated %}
-                    <a href="{% url 'profile' %}">👤 Кабінет ({{ user.username }})</a>
-
-                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="pandy-nav__link">👤 Кабінет ({{ user.username }})</a>
+                <form action="{% url 'logout' %}" method="post" class="pandy-nav__form">
                     {% csrf_token %}
-                    <button type="submit" class="btn-logout-link">Вийти</button>
+                    <button type="submit" class="pandy-btn pandy-btn--logout">Вийти</button>
                 </form>
-
-                {% else %}
-                    <a href="{% url 'login' %}">Увійти</a>
-                    <a href="{% url 'register' %}">Реєстрація</a>
-                {% endif %}
-
-                <a href="{% url 'cart_detail' %}">🛒 Кошик</a>
-            </nav>
-
+            {% else %}
+                <a href="{% url 'login' %}" class="pandy-nav__link">Увійти</a>
+                <a href="{% url 'register' %}" class="pandy-nav__link">Реєстрація</a>
+            {% endif %}
+            <a href="{% url 'cart_detail' %}" class="pandy-nav__link pandy-nav__link--cart">🛒 Кошик</a>
+        </nav>
     </header>
 
-    <main class="content">
-        {% block content %}
-        {% endblock %}
+    <main class="pandy-main-content">
+        {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Sleepy Pandy Cafe © 2026. Завжди раді вам!</p>
-        <p>Локація: вул. Лесі Українки 2</p>
+    <footer class="pandy-footer">
+        <div class="pandy-footer__container">
 
-        {% if page_type == 'category' %}
-            <a href="{% url 'home' %}" class="footer-btn">← Назад на головну</a>
-        {% endif %}
+            <div class="pandy-footer__info">
+
+                {% if request.resolver_match.url_name != 'home' %}
+                    <div class="pandy-footer__back-wrapper">
+                        <a href="{% url 'home' %}" class="pandy-btn pandy-btn--secondary pandy-btn--small">
+                            🏠 На головну
+                        </a>
+                     </div>
+                {% endif %}
+
+            </div>
+
+            <div class="pandy-footer__subscribe">
+                <h4 class="pandy-footer__title">Слідкуйте за акціями ☕</h4>
+                <form method="post" action="{% url 'home' %}" class="pandy-footer__form">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Ваш Email" required class="pandy-input">
+                    <button type="submit" class="pandy-btn pandy-btn--main pandy-btn--small">Підписатись</button>
+                </form>
+            </div>
+
+            <p class="pandy-footer__text"><strong>Sleepy Pandy Cafe © 2026.</strong> Завжди раді вам! 🐼</p>
+            <p class="pandy-footer__subtext">Локація: вул. Лесі Українки 2, Луцьк</p>
+
+        </div>
     </footer>
 
 </body>

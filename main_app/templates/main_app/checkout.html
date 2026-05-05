@@ -1,0 +1,22 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+<div class="pandy-container--narrow">
+    <div class="pandy-card">
+        <h2 class="pandy-card__title--center">Оформлення замовлення</h2>
+        <p class="pandy-text--lead">Загальна сума: <strong>{{ total_price }} грн</strong></p>
+
+        <form method="post" class="pandy-form">
+            {% csrf_token %}
+            {% if form %}
+                <h4 class="pandy-form__subtitle">Дані для доставки</h4>
+                {{ form.as_p }}
+            {% else %}
+                <p class="pandy-text--center">Ви авторизовані як <strong>{{ user.username }}</strong>. Дані будуть взяті з вашого профілю.</p>
+            {% endif %}
+            <div class="pandy-form__actions">
+                <button type="submit" class="pandy-btn pandy-btn--main">Підтвердити замовлення ☕</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

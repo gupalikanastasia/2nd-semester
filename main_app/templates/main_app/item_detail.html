@@ -1,47 +1,49 @@
 {% extends 'main_app/base.html' %}
-
 {% block content %}
-<div class="detail-container">
-    <div class="detail-image">
+
+<div class="pandy-detail">
+    <div class="pandy-detail__image-box">
         {% if item.image %}
-            <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 400px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="pandy-detail__img">
         {% endif %}
     </div>
 
-    <div class="detail-info">
-        <h1>{{ item.name }}</h1>
-        <p style="font-size: 24px; color: #e67e22; font-weight: bold;">{{ item.price }} грн</p>
-        <p style="color: #7f8c8d; margin-bottom: 30px;">{{ item.description }}</p>
+    <div class="pandy-detail__info">
+        <h1 class="pandy-detail__title">{{ item.name }}</h1>
+        <p class="pandy-detail__price">{{ item.price }} грн</p>
+        <p class="pandy-detail__desc">{{ item.description }}</p>
 
-        <a href="{% url 'cart_add' item.id %}" class="btn-main" style="display: inline-block; text-align: center;">
-            🛒 Додати в кошик
-        </a>
-
-        <br>
-
-        <a href="{% url 'home' %}" class="btn-main btn-back">← Назад до меню</a>
+        <div class="pandy-detail__actions">
+            <a href="{% url 'cart_add' item.id %}" class="pandy-btn pandy-btn--main">🛒 Додати в кошик</a>
+            <a href="{% url 'home' %}" class="pandy-btn pandy-btn--secondary">← Назад</a>
+        </div>
     </div>
 </div>
 
-<div class="rating-section">
-    <h4>Середній бал: {{ item.get_average_rating }}</h4>
+<div class="pandy-container--narrow">
+    <section class="pandy-section pandy-card">
+        <h4 class="pandy-section__title">Рейтинг страви</h4>
 
-    <form method="post">
-        {% csrf_token %}
-        <p>Оцініть цей товар:</p>
-        {{ rating_form.score }}
-        <button type="submit" class="btn-main">Поставити оцінку</button>
-    </form>
-</div>
+        <div class="pandy-rating-display">
+            <span class="pandy-rating-display__label">Середній бал:</span>
+            <span class="pandy-rating-display__value">{{ item.get_average_rating|default:"0.0" }} / 5.0</span>
+        </div>
 
-<hr>
-
-<div class="newsletter-section">
-    <h4>Підпишіться на наші новини</h4>
-    <form action="#" method="post"> {% csrf_token %}
-        {{ subscription_form.as_p }}
-        <button type="submit" class="btn-main">Підписатися</button>
-    </form>
+        {% if already_rated %}
+            <p class="pandy-status pandy-status--success">✅ Ви вже оцінили цю страву.</p>
+        {% elif user.is_authenticated %}
+            <form method="post" class="pandy-form">
+                {% csrf_token %}
+                {{ rating_form.as_p }}
+                <button type="submit" class="pandy-btn pandy-btn--main">Оцінити</button>
+            </form>
+        {% else %}
+            <p class="pandy-text--center">
+                <a href="{% url 'login' %}" class="pandy-btn pandy-btn--main pandy-btn--small">Увійти</a>
+                щоб залишити оцінку.
+            </p>
+        {% endif %}
+    </section>
 </div>
 
 {% endblock %}

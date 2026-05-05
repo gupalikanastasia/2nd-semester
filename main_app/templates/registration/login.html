@@ -1,17 +1,16 @@
 {% extends 'main_app/base.html' %}
-
 {% block content %}
-<div class="forms-container">
-    <div class="newsletter-section">
-        <h2 class="cart-title">🥐 Вхід у Sleepy Pandy</h2>
-        <form method="post">
+<div class="pandy-container--small">
+    <div class="pandy-card">
+        <h2 class="pandy-card__title">Вхід</h2>
+        <form method="post" class="pandy-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn-main">Увійти</button>
+            <div class="pandy-form__extra">
+                <a href="{% url 'password_reset' %}" class="pandy-link--subtle">Забули пароль? 🐼</a>
+            </div>
+            <button type="submit" class="pandy-btn pandy-btn--main">Продовжити</button>
         </form>
-        <p style="margin-top: 15px;">
-            <a href="{% url 'password_reset' %}" style="color: #888;">Забули пароль?</a>
-        </p>
     </div>
 </div>
 {% endblock %}

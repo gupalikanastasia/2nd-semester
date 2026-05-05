@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import ssl
+import os
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,8 +127,16 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# settings.py
 
-LOGIN_REDIRECT_URL = 'profile'
+# Тепер вказуємо шлях прямо до views
+EMAIL_BACKEND = 'main_app.views.UnsafeEmailBackend'
 
-LOGOUT_REDIRECT_URL = 'home'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'gupalikanastasia@gmail.com'
+EMAIL_HOST_PASSWORD = 'kdsxxblnrrurdyug' # Твій пароль додатка
+
+DEFAULT_FROM_EMAIL = 'Sleepy Pandy Cafe <gupalikanastasia@gmail.com>'

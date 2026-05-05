@@ -1,15 +1,15 @@
 {% extends 'main_app/base.html' %}
-
 {% block content %}
-<div class="cart-container-main">
-    <h2 class="cart-title">🍰 Ваше замовлення</h2>
+
+<div class="pandy-container pandy-container--narrow">
+    <h2 class="pandy-page-title">🍰 Ваше замовлення</h2>
 
     {% if items %}
-        <div class="cart-card">
-            <table class="cart-table">
+        <div class="pandy-card pandy-card--full">
+            <table class="pandy-table">
                 <thead>
                     <tr>
-                        <th class="text-left">Товар</th>
+                        <th class="pandy-table__th--left">Товар</th>
                         <th>Кількість</th>
                         <th>Ціна</th>
                         <th>Сума</th>
@@ -18,42 +18,37 @@
                 </thead>
                 <tbody>
                     {% for entry in items %}
-                    <tr>
-                        <td class="text-left">
-                            <span class="item-name">{{ entry.item.name }}</span>
-                        </td>
-                        <td><span class="badge">{{ entry.quantity }} шт.</span></td>
+                    <tr class="pandy-table__row">
+                        <td class="pandy-table__td--left">{{ entry.item.name }}</td>
+                        <td><span class="pandy-badge">{{ entry.quantity }} шт.</span></td>
                         <td>{{ entry.item.price }} грн</td>
-                        <td class="text-bold">{{ entry.subtotal }} грн</td>
+                        <td class="pandy-table__td--bold">{{ entry.subtotal }} грн</td>
                         <td>
-                            <a href="{% url 'cart_remove' entry.item.id %}" class="btn-remove" title="Видалити">
-                                <span>❌</span> Видалити
-                            </a>
+                            <a href="{% url 'cart_remove' entry.item.id %}" class="pandy-link--danger">❌ Видалити</a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-            <div class="cart-footer">
-                <div class="total-section">
-                    <span class="total-label">Разом до сплати:</span>
-                    <span class="total-amount">{{ total_price }} грн</span>
+            <div class="pandy-cart-footer">
+                <div class="pandy-total">
+                    <span class="pandy-total__label">Разом до сплати:</span>
+                    <span class="pandy-total__amount">{{ total_price }} грн</span>
                 </div>
 
-                <div class="cart-actions">
-                    <a href="{% url 'home' %}" class="btn-secondary">🔙 До меню</a>
-                    <a href="{% url 'checkout' %}" class="btn-main checkout-btn" style="text-decoration: none; display: inline-block; text-align: center;"> Оформити замовлення ✨
-                    </a>
+                <div class="pandy-cart-actions">
+                    <a href="{% url 'home' %}" class="pandy-btn pandy-btn--secondary">🔙 До меню</a>
+                    <a href="{% url 'checkout' %}" class="pandy-btn pandy-btn--main pandy-btn--large">Оформити замовлення ✨</a>
                 </div>
-
             </div>
         </div>
     {% else %}
-        <div class="empty-cart">
+        <div class="pandy-status--empty">
             <p>Ваш кошик поки що порожній. Час додати щось солоденьке! 🍩</p>
-            <a href="{% url 'home' %}" class="btn-main">Повернутися до меню</a>
+            <a href="{% url 'home' %}" class="pandy-btn pandy-btn--main">До меню</a>
         </div>
     {% endif %}
 </div>
+
 {% endblock %}

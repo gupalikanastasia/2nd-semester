@@ -501,3 +501,12 @@ nav.pandy-nav {
     padding-left: 20px;
     margin-top: 10px;
 }
+
+.auth-section input {
+    display: block !important; /* Гарантує, що поле не приховане */
+    background-color: #ffffff !important; /* Білий фон для поля */
+    color: #333333 !important; /* Темний текст */
+    border: 1px solid #ff9f1c !important; /* Помаранчева рамка в стилі Sleepy Pandy */
+    height: auto !important;
+    min-height: 40px;
+}

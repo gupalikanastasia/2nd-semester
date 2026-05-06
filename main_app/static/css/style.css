@@ -427,3 +427,77 @@ nav.pandy-nav {
     color: #fca311; /* Стає помаранчевим при наведенні */
     text-decoration: underline;
 }
+
+/* ФІНАЛЬНІ СТИЛІ ДЛЯ СТОРІНОК ПАРОЛІВ */
+
+.auth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує вміст по горизонталі */
+    justify-content: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 80px auto; /* Центрує сам блок на сторінці */
+    padding: 20px;
+    width: 100%;
+}
+
+.auth-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.auth-section p {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+}
+
+/* Оформлення форми та інпутів */
+.auth-section form {
+    width: 100%;
+    max-width: 400px; /* Щоб форма не була надто широкою */
+    text-align: left; /* Текст всередині (Email/Password) краще зліва */
+}
+
+.auth-section input[type="email"],
+.auth-section input[type="password"],
+.auth-section input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Кнопка Sleepy Pandy */
+.auth-btn {
+    display: inline-block;
+    background-color: #ff9f1c;
+    color: white !important;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth-btn:hover {
+    background-color: #e68a00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3);
+}
+
+/* Списки з вимогами до пароля */
+.auth-section ul {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 10px;
+}

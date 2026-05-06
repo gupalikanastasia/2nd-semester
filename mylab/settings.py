@@ -12,6 +12,19 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import ssl
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG') == 'True'
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+import os
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -25,7 +38,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-66t#2crtk*aas$_5oo#jr^826wof^rt1a^6e_kf!$n7c#i0!l6'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,13 +49,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +73,7 @@ ROOT_URLCONF = 'mylab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,8 +140,6 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# settings.py
-
 # Тепер вказуємо шлях прямо до views
 EMAIL_BACKEND = 'main_app.views.UnsafeEmailBackend'
 
@@ -136,9 +147,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'gupalikanastasia@gmail.com'
-EMAIL_HOST_PASSWORD = 'kdsxxblnrrurdyug' # Твій пароль додатка
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-DEFAULT_FROM_EMAIL = 'Sleepy Pandy Cafe <gupalikanastasia@gmail.com>'
+DEFAULT_FROM_EMAIL = f'Sleepy Pandy Cafe <{EMAIL_HOST_USER}>'
 
-LOGOUT_REDIRECT_URL = 'home'  # або 'login', якщо хочеш, щоб одразу просило увійти знову
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = 'home'

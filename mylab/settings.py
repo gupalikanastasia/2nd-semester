@@ -140,3 +140,5 @@ EMAIL_HOST_USER = 'gupalikanastasia@gmail.com'
 EMAIL_HOST_PASSWORD = 'kdsxxblnrrurdyug' # Твій пароль додатка
 
 DEFAULT_FROM_EMAIL = 'Sleepy Pandy Cafe <gupalikanastasia@gmail.com>'
+
+LOGOUT_REDIRECT_URL = 'home'  # або 'login', якщо хочеш, щоб одразу просило увійти знову
